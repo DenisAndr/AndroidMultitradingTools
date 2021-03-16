@@ -1,5 +1,6 @@
 package de.ludetis.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.LoaderManager;
@@ -8,10 +9,13 @@ import android.content.Context;
 import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
+public class MainActivity extends AppCompatActivity {
 
     TextView viewById;
 
@@ -19,123 +23,52 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         viewById = findViewById(R.id.textView);
 
-//        FileLoader fileLoader = new FileLoader();
-//        fileLoader.execute("http://mysyte.com/settings.json");
+        final Handler[] handler = new Handler[1];
 
-        viewById.setText("Start loading...");
-        getLoaderManager().initLoader(1, null, this);
-        getLoaderManager().initLoader(2, null, this);
-
-        viewById.setOnClickListener(new View.OnClickListener() {
+        new Thread("ServerThread") {
             @Override
-            public void onClick(View v) {
-                getLoaderManager().restartLoader(2, null, MainActivity.this);
+            public void run() {
+                Looper.prepare();
+                handler[0] = new Handler(){
+                    @Override
+                    public void dispatchMessage(@NonNull Message msg) {
+                        super.dispatchMessage(msg);
+                    }
+
+                    @Override
+                    public void handleMessage(@NonNull Message msg) {
+                        super.handleMessage(msg);
+                    }
+                };
+                Looper.loop();
             }
-        });
+        }.start();
 
-    }
 
-    @Override
-    public Loader<String> onCreateLoader(int id, Bundle args) {
-        return new FileLoader(id, getApplicationContext());
-    }
+        new Thread("ClientThread") {
+            @Override
+            public void run() {
 
-    @Override
-    public void onLoadFinished(Loader<String> loader, String data) {
-        viewById.setText(data);
-    }
+                while (true) {
 
-    @Override
-    public void onLoaderReset(Loader<String> loader) {
+                    if (handler[0] != null) {
+                        Message message = new Message();
+                        message.obj = "Данные";
+                        handler[0].sendMessage(message);
+                    }
 
-    }
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-    private static class FileLoader extends AsyncTaskLoader<String> {
-        private final int id;
-
-        public FileLoader(int id, Context context) {
-            super(context);
-            this.id = id;
-        }
-
-        @Override
-        public String loadInBackground() {
-
-            downloadingFile();
-
-            return "Загруженные данные с сервера. id = " + id;
-        }
-
-        void downloadingFile() {
-            for (int i = 0; i <= 100; i++) {
-                downloadPart(i);
             }
-        }
+        }.start();
 
-        private void downloadPart(int i) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected void onStartLoading() {
-            super.onStartLoading();
-            forceLoad();
-        }
-
-        @Override
-        protected void onForceLoad() {
-            super.onForceLoad();
-        }
     }
-
-
-//    class FileLoader extends AsyncTask<String, Integer, String> {
-//
-//        private void downloadPart(int i) {
-//            try {
-//                Thread.sleep(50);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            viewById.setText("Start loading...");
-//        }
-//
-//        void downloadingFile() {
-//            for (int i = 0; i <= 100; i++) {
-//                downloadPart(i);
-//                publishProgress(i);
-//            }
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            downloadingFile();
-//            return "Загруженные данные с сервера по аддресу " + strings[0];
-//        }
-//
-//        @Override
-//        protected void onProgressUpdate(Integer... values) {
-//            super.onProgressUpdate(values);
-//            viewById.setText("Loaded " + values[0] + "%");
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//            viewById.setText(s);
-//        }
-//    }
 
 }

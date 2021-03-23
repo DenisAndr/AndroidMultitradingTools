@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="de.ludetis.myapplication.permission.USE_API" />
+
+    <permission android:name="de.ludetis.myapplication.permission.USE_API"
+        android:protectionLevel="dangerous"/>
 
     <application
         android:allowBackup="true"
@@ -12,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ApiActivity" android:exported="true" android:permission="de.ludetis.myapplication.permission.USE_API" >
+            
+        </activity>
+
+
     </application>
 
 </manifest>

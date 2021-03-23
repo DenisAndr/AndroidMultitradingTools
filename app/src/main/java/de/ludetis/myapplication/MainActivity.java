@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void useApi() {
-        startActivityForResult(new Intent(this, ApiActivity.class), 0);
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName("de.ludetis.myapplication", "de.ludetis.myapplication.ApiActivity"));
+        startActivityForResult(intent, 0);
     }
 
     @Override

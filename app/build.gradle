@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "de.ludetis.myapplication"
+        applicationId "de.ludetis.myapplication_client"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

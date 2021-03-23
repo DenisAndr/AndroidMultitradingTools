@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="de.ludetis.myapplication.permission.USE_API" />
 
-    <permission android:name="de.ludetis.myapplication.permission.USE_API"
-        android:protectionLevel="dangerous"/>
+<!--    <permission android:name="de.ludetis.myapplication.permission.USE_API"-->
+<!--        android:protectionLevel="dangerous"/>-->
 
     <application
         android:allowBackup="true"
@@ -25,9 +25,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ApiActivity" android:exported="true" android:permission="de.ludetis.myapplication.permission.USE_API" >
-            
-        </activity>
+<!--        <activity android:name=".ApiActivity" android:exported="true" android:permission="de.ludetis.myapplication.permission.USE_API" >-->
+<!--            -->
+<!--        </activity>-->
 
 
     </application>

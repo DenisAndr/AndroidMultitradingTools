@@ -28,30 +28,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewById = findViewById(R.id.textView);
 
-//        Dexter.withContext(this)
-//                .withPermission("de.ludetis.myapplication.permission.USE_API")
-//                .withListener(new PermissionListener() {
-//                    @Override
-//                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-//                        useApi();
-//                    }
-//
-//                    @Override
-//                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-//                        Toast.makeText(MainActivity.this, "Вы не дали доступ к камере, жлоб!", Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-//                        new AlertDialog.Builder(MainActivity.this)
-//                                .setTitle("Свой диалог")
-//                                .setMessage("Зачем давать пермишин")
-//                                .setPositiveButton("Ok", (dialog, which) -> permissionToken.continuePermissionRequest()).create().show();
-//                    }
-//                })
-//                .check();
+        Dexter.withContext(this)
+                .withPermission("de.ludetis.myapplication.permission.USE_API")
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                        useApi();
+                    }
 
-        useApi();
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                        Toast.makeText(MainActivity.this, "Вы не дали доступ к камере, жлоб!", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Свой диалог")
+                                .setMessage("Зачем давать пермишин")
+                                .setPositiveButton("Ok", (dialog, which) -> permissionToken.continuePermissionRequest()).create().show();
+                    }
+                })
+                .check();
     }
 
 

@@ -11,6 +11,7 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Loader;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,10 +24,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import de.ludetis.myapplication.view.ColoredBackgroundTextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         viewById = findViewById(R.id.textView);
 
         registerForContextMenu(viewById);
+
+
+        ColoredBackgroundTextView coloredBackgroundTextView = findViewById(R.id.coloredBackgroundTextView);
 
 //        Toast toast = Toast.makeText(this, "Текст для тоста!", Toast.LENGTH_SHORT);
 //        toast.show();

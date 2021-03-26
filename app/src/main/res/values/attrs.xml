@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColoredBackgroundTextView" >
+        <attr name="cbtv_background_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RadioText" >
+        <attr name="rt_selection_background_color" format="color" />
+        <attr name="rt_texts_count" format="integer" />
+    </declare-styleable>
+
+</resources>

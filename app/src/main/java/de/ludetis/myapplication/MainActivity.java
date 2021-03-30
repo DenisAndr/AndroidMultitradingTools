@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewById = findViewById(R.id.textView);
+//        viewById = findViewById(R.id.textView);
 
-        registerForContextMenu(viewById);
+//        registerForContextMenu(viewById);
 
 
-        ColoredBackgroundTextView coloredBackgroundTextView = findViewById(R.id.coloredBackgroundTextView);
+//        ColoredBackgroundTextView coloredBackgroundTextView = findViewById(R.id.coloredBackgroundTextView);
 
 //        Toast toast = Toast.makeText(this, "Текст для тоста!", Toast.LENGTH_SHORT);
 //        toast.show();
@@ -118,31 +118,31 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.add(Menu.NONE, 0, Menu.NONE, "Пункт 0");
-        menu.add(Menu.NONE, 1, Menu.NONE, "Пункт 1");
-        menu.add(Menu.NONE, 2, Menu.NONE, "Пункт 2");
-        menu.add(Menu.NONE, 3, Menu.NONE, "Пункт 3");
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case 0 :
-                Toast.makeText(this, "Вы выбрали " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-            case 1 :
-                Toast.makeText(this, "Вы нажали " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-            case 2 :
-                Toast.makeText(this, "Вы тапнули " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-            case 3 :
-                Toast.makeText(this, "Вы ткнули " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-
-            default: return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        menu.add(Menu.NONE, 0, Menu.NONE, "Пункт 0");
+//        menu.add(Menu.NONE, 1, Menu.NONE, "Пункт 1");
+//        menu.add(Menu.NONE, 2, Menu.NONE, "Пункт 2");
+//        menu.add(Menu.NONE, 3, Menu.NONE, "Пункт 3");
+//    }
+//
+//    @Override
+//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case 0 :
+//                Toast.makeText(this, "Вы выбрали " + item.getTitle(), Toast.LENGTH_SHORT).show();
+//                return true;
+//            case 1 :
+//                Toast.makeText(this, "Вы нажали " + item.getTitle(), Toast.LENGTH_SHORT).show();
+//                return true;
+//            case 2 :
+//                Toast.makeText(this, "Вы тапнули " + item.getTitle(), Toast.LENGTH_SHORT).show();
+//                return true;
+//            case 3 :
+//                Toast.makeText(this, "Вы ткнули " + item.getTitle(), Toast.LENGTH_SHORT).show();
+//                return true;
+//
+//            default: return super.onOptionsItemSelected(item);
+//        }
+//    }
 }

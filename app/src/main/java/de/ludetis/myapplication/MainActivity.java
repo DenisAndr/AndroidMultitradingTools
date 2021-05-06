@@ -11,8 +11,12 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Loader;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -30,6 +34,13 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.List;
+
 import de.ludetis.myapplication.view.ColoredBackgroundTextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 //        viewById = findViewById(R.id.textView);
 
 //        registerForContextMenu(viewById);
@@ -90,6 +102,20 @@ public class MainActivity extends AppCompatActivity {
 
 //        MyDialog myDialog = new MyDialog(this);
 //        myDialog.show();
+
+
+        try {
+
+            Signature[] sigs = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES).signatures;
+
+            for (Signature sig : sigs)
+            {
+                System.out.println("Signature hashcode : " + sig.hashCode());
+            }
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
